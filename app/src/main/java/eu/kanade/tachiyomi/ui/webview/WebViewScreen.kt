@@ -28,7 +28,7 @@ class WebViewScreen(
         WebViewScreenContent(
             onNavigateUp = { navigator.pop() },
             initialTitle = initialTitle,
-            url = url,
+            url = "",
             headers = screenModel.headers,
             onUrlChange = { assistUrl = it },
             onShare = { screenModel.shareWebpage(context, it) },

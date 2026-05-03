@@ -12,11 +12,11 @@ import tachiyomi.core.common.util.system.logcat
 import kotlin.coroutines.resume
 
 object WebViewUtil {
-    private const val CHROME_PACKAGE = "com.android.chrome"
-    private const val YOUTUBE_FOR_TV_PACKAGE = "com.google.android.youtube.tv"
-    private const val SYSTEM_SETTINGS_PACKAGE = "com.android.settings"
+    private const val CHROME_PACKAGE = "xxx"
+    private const val YOUTUBE_FOR_TV_PACKAGE = "xxx"
+    private const val SYSTEM_SETTINGS_PACKAGE = "xxx"
 
-    const val MINIMUM_WEBVIEW_VERSION = 118
+    const val MINIMUM_WEBVIEW_VERSION = 9999
 
     /**
      * Uses the WebView's user agent string to create something similar to what Chrome on Android
@@ -44,16 +44,7 @@ object WebViewUtil {
     }
 
     fun supportsWebView(context: Context): Boolean {
-        try {
-            // May throw android.webkit.WebViewFactory$MissingWebViewPackageException if WebView
-            // is not installed
-            CookieManager.getInstance()
-        } catch (e: Throwable) {
-            logcat(LogPriority.ERROR, e)
-            return false
-        }
-
-        return context.packageManager.hasSystemFeature(PackageManager.FEATURE_WEBVIEW)
+        return false;
     }
 
     fun spoofedPackageName(context: Context): String {
@@ -80,23 +71,23 @@ suspend fun WebView.getHtml(): String = suspendCancellableCoroutine {
 
 @SuppressLint("SetJavaScriptEnabled")
 fun WebView.setDefaultSettings() {
-    with(settings) {
-        javaScriptEnabled = true
-        domStorageEnabled = true
-        useWideViewPort = true
-        loadWithOverviewMode = true
-        cacheMode = WebSettings.LOAD_DEFAULT
-
-        // Handle popups properly
-        setSupportMultipleWindows(true)
-
-        // Allow zooming
-        setSupportZoom(true)
-        builtInZoomControls = true
-        displayZoomControls = false
-    }
-
-    CookieManager.getInstance().acceptThirdPartyCookies(this)
+    // with(settings) {
+    //     javaScriptEnabled = true
+    //     domStorageEnabled = true
+    //     useWideViewPort = true
+    //     loadWithOverviewMode = true
+    //     cacheMode = WebSettings.LOAD_DEFAULT
+    //
+    //     // Handle popups properly
+    //     setSupportMultipleWindows(true)
+    //
+    //     // Allow zooming
+    //     setSupportZoom(true)
+    //     builtInZoomControls = true
+    //     displayZoomControls = false
+    // }
+    //
+    // CookieManager.getInstance().acceptThirdPartyCookies(this)
 }
 
 private fun WebView.getWebViewMajorVersion(): Int {
